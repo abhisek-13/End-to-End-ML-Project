@@ -11,6 +11,7 @@ from src.exception import CustomException
 from src.logger import logging
 from src.utils import save_object
 
+
 @dataclass
 class DataTransformationConfig:
   preprocessor_obj_file_path = os.path.join('artifact','preprocessor.pkl')
@@ -29,7 +30,7 @@ class DataTransformation:
         steps=[('imputer',SimpleImputer(strategy='median')),('scaler',StandardScaler())]
       )
       categorical_pipeline = Pipeline(
-        steps=[('imputer',SimpleImputer(strategy='most_frequent')),('onehot_encoder',OneHotEncoder()),('scaler',StandardScaler())]
+        steps=[('imputer',SimpleImputer(strategy='most_frequent')),('onehot_encoder',OneHotEncoder()),('scaler',StandardScaler(with_mean=False))]
       )
       
       logging.info(f"numerical columns: {numerical_columns}")
@@ -50,7 +51,7 @@ class DataTransformation:
       logging.info("Reading train and test data completed.")
       logging.info("Obtaining preprocessor object.")
       
-      target_column_name = "math_score"
+      target_column_name = "math score"
       numerical_columns = ['writing score','reading score']
       
       # for train data
@@ -82,4 +83,5 @@ class DataTransformation:
       
     except Exception as e:
       raise CustomException(e,sys)
+    
     
