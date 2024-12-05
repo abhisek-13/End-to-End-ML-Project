@@ -15,7 +15,7 @@ def get_requirements(filepath:str)->List[str]:
 
 setup(
   name = 'end to end ml project',
-  version= '0,0,1',
+  version= '0.0.1',
   author='abhisek',
   author_email='abhisekmaharana9861@gmail.com',
   packages=find_packages(),
